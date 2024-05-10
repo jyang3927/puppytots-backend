@@ -19,7 +19,8 @@
     "express": "^4.19.2",
     "firebase-admin": "^11.8.0",
     "firebase-functions": "^4.3.1",
-    "mongodb": "^6.5.0"
+    "mongodb": "^6.5.0",
+    "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",

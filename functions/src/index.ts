@@ -1,19 +1,19 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import * as functions from "firebase-functions"; 
+import express, {ErrorRequestHandler} from "express"; 
+import cors from 'cors'; 
+import dogsRouter from './routes/dogsRouter';
+import puppiesRouter from './routes/puppiesRouter';
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+const app = express(); 
+app.use(cors()); 
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+    res.status(500).json({ message: "Internal Server Error" });
+  };
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+app.use(errorHandler); 
+
+app.use("/api", puppiesRouter); 
+app.use("/api", dogsRouter); 
+
+export const backendAPI = functions.https.onRequest(app); 
