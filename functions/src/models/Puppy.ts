@@ -7,4 +7,5 @@ export interface Puppy{
     sex: string; 
     price: number;
     available: boolean;
+    imageName: string;
 }
