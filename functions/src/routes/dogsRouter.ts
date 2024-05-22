@@ -11,7 +11,7 @@ const errorResponse = (error:any, res: any) => {
     res.status(500).json({message:"Internal Server Error"}); 
 }; 
 
-dogsRouter.get("/ourDogs", async(req,res) => {
+dogsRouter.get("/ourDogs/getDogs", async(req,res) => {
     try{
         const client = await getClient(); 
         const results = await client.db().collection<Dog>("dogs").find().toArray(); 
@@ -22,7 +22,7 @@ dogsRouter.get("/ourDogs", async(req,res) => {
     }
 }); 
 
-dogsRouter.post("/ourDogs", async(req, res) => {
+dogsRouter.post("/ourDogs/dogPost", async(req, res) => {
     try{
         const dog: Dog = req.body; 
         const client = await getClient(); 

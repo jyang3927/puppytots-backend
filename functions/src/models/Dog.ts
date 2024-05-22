@@ -5,4 +5,5 @@ export interface Dog{
     name: string; 
     weight: number; 
     details: string; 
+    imageUrl:string;
 }

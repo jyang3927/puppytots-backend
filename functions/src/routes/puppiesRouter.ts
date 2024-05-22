@@ -173,12 +173,15 @@ puppiesRouter.delete("/puppies/:id", async(req, res) => {
         const result = await client.db().collection<Puppy>("puppies").deleteOne({_id}); 
         if (result.deletedCount) {
             res.sendStatus(204); 
+            return result; 
         }else {
             res.status(404); 
             res.send("Puppy not found"); 
+            return result;
         }
     } catch(error){
         errorResponse(error,res); 
+        return error;
     }
 }); 
 
